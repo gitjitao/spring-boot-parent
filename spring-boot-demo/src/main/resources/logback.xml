@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] %logger{36}:%L- %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/logs/boot/boot-demo.log</File>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/logs/boot/boot-demo.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>60</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] %logger{36}:%L- %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 日志输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="stdout" />
+        <appender-ref ref="RollingFile" />
+    </root>
+    <logger name="org.springframework.core" level="error"/>
+    <logger name="org.springframework.beans" level="error"/>
+    <logger name="org.springframework.context" level="error"/>
+    <logger name="org.springframework.web" level="error"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="java.sql.ResultSet" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="com.alibaba.druid" level="DEBUG"/>
+    <logger name="tk.mybatis" level="DEBUG"/>
+</configuration>
